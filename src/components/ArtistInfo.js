@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const ArtistInfo = ({ infoArtist }) => {
   if (Object.keys(infoArtist).length === 0) return null;
@@ -31,5 +32,9 @@ const ArtistInfo = ({ infoArtist }) => {
     </div>
   )
 }
+
+ArtistInfo.propTypes = {
+  infoArtist: PropTypes.object.isRequired
+};
 
 export default ArtistInfo

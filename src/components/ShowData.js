@@ -1,6 +1,7 @@
 import React from 'react'
 import Song from './Song'
 import ArtistInfo from './ArtistInfo'
+import PropTypes from 'prop-types';
 
 const ShowData = ({lyricSong, infoArtist}) => {
   return (
@@ -20,5 +21,11 @@ const ShowData = ({lyricSong, infoArtist}) => {
     </div>
   )
 }
+
+
+ShowData.propTypes = {
+  lyricSong: PropTypes.string.isRequired,
+  infoArtist: PropTypes.object.isRequired
+};
 
 export default ShowData

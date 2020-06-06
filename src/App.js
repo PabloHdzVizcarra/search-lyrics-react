@@ -10,6 +10,7 @@ function App() {
   const [searchLyric, setSearchLyric] = useState({});
   const [lyricSong, setLyricSong] = useState('');
   const [infoArtist, setInfoArtist] = useState({});
+  const [errorAPI, setErrorAPI] = useState(false);
 
   useEffect(() => {
     if ( Object.keys(searchLyric).length === 0 ) return;
@@ -20,13 +21,21 @@ function App() {
       const url = `https://api.lyrics.ovh/v1/${artist}/${song}`;
       const urlDataArtist =`https://www.theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
 
-      const [ lyric, data ] = await Promise.all([
-        axios(url),
-        axios(urlDataArtist)
-      ])
+      try {
+        const [ lyric, data ] = await Promise.all([
+          axios(url),
+          axios(urlDataArtist)
+        ])
 
-      setLyricSong(lyric.data.lyrics);
-      setInfoArtist(data.data.artists[0])
+        setLyricSong(lyric.data.lyrics);
+        setInfoArtist(data.data.artists[0])
+
+        setErrorAPI(false)
+
+      } catch (error) {
+        setErrorAPI(true)
+      }
+
 
     }
     checkApiLyrics();
@@ -38,6 +47,7 @@ function App() {
     <Fragment>
       <Form
         setSearchLyric={setSearchLyric}
+        errorAPI={errorAPI}
       />
 
       <ShowData

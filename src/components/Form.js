@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Error from './Error'
+import PropTypes from 'prop-types';
 
-const Form = ({setSearchLyric}) => {
+const Form = ({setSearchLyric, errorAPI}) => {
 
   const [search, setSearch] = useState({
     artist: '',
@@ -41,6 +42,7 @@ const Form = ({setSearchLyric}) => {
     <div className="bg-info">
 
       {error ?  <Error text="Todos los campos son obligatorios"/>: null }
+      {errorAPI ? <Error text="Intenta con otra busqueda artista o cancion no encontrada"/>: null}
 
       <div className="container">
         <div className="row">
@@ -84,12 +86,16 @@ const Form = ({setSearchLyric}) => {
                 className="btn btn-secondary float-right px-5"
               >Buscar</button>
             </fieldset>
-            
           </form>
         </div>
       </div>
     </div>
   )
 }
+
+Form.propTypes = {
+  setSearchLyric: PropTypes.func.isRequired,
+  errorAPI: PropTypes.bool.isRequired
+};
 
 export default Form
