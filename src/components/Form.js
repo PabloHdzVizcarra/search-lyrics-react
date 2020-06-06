@@ -49,7 +49,7 @@ const Form = ({setSearchLyric}) => {
             className="col card text-white bg-transparent mb-5 pt-5 pb-2"
           >
             <fieldset>
-              <legend className="text-center">Buscador Letras de Canciones</legend>
+              <legend className="text-center main-title h1 mb-4">Buscador Letras de Canciones</legend>
 
               <div className="row">
                 <div className="col-md-6">
